@@ -1,0 +1,3 @@
+{
+  "extends": ["github>kei711/renovate-config", "group:allNonMajor"]
+}
