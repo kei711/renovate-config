@@ -23,5 +23,62 @@
   "bugs": {
     "url": "https://github.com/kei711/renovate-config/issues"
   },
-  "homepage": "https://github.com/kei711/renovate-config#readme"
+  "homepage": "https://github.com/kei711/renovate-config#readme",
+  "renovate-config": {
+    "default": {
+      "extends": [
+        "config:base",
+        ":timezone(Asia/Tokyo)",
+        ":label(renovate)"
+      ],
+      "schedule": [
+        "before 7am on Saturday"
+      ],
+      "reviewers": [
+        "kei711"
+      ]
+    },
+    "group:allNonMajor": {
+      "extends": [
+        "github>kei711/renovate-config",
+        "group:allNonMajor"
+      ]
+    },
+    "customPackageRules": {
+      "extends": [
+        "github>kei711/renovate-config"
+      ],
+      "packageRules": [
+        {
+          "depTypeList": [
+            "devDependencies"
+          ],
+          "updateTypes": [
+            "patch",
+            "minor"
+          ],
+          "groupName": "devDependencies (non-major)",
+          "automerge": true
+        },
+        {
+          "depTypeList": [
+            "dependencies"
+          ],
+          "updateTypes": [
+            "minor"
+          ],
+          "groupName": "dependencies (minor)"
+        },
+        {
+          "depTypeList": [
+            "dependencies"
+          ],
+          "updateTypes": [
+            "patch"
+          ],
+          "groupName": "dependencies (patch)"
+        }
+      ]
+    }
+  }
 }
