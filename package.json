@@ -9,8 +9,11 @@
     "renovate": "^19.176.2"
   },
   "scripts": {
-    "test": "npm run prettier && npm run validate",
-    "validate": "renovate-config-validator",
+    "test": "npm-run-all --parallel --print-label prettier validate",
+    "validate": "npm-run-all --parallel --print-label validate:*",
+    "validate:default": "RENOVATE_CONFIG_FILE=./default.json renovate-config-validator",
+    "validate:all-non-major": "RENOVATE_CONFIG_FILE=./all-non-major.json renovate-config-validator",
+    "validate:group-custom-rules": "RENOVATE_CONFIG_FILE=./group-cutom-rules.json renovate-config-validator",
     "prettier": "prettier --list-different \"*.{ts,js,json,md,yml,yaml}\"",
     "prettier:fix": "prettier --write \"*.{ts,js,json,md,yml,yaml}\""
   },
@@ -26,20 +29,5 @@
   "bugs": {
     "url": "https://github.com/kei711/renovate-config/issues"
   },
-  "homepage": "https://github.com/kei711/renovate-config#readme",
-  "renovate-config": {
-    "default": {
-      "extends": [
-        "config:base",
-        ":timezone(Asia/Tokyo)",
-        ":label(renovate)"
-      ],
-      "schedule": [
-        "before 7am on Saturday"
-      ],
-      "reviewers": [
-        "kei711"
-      ]
-    }
-  }
+  "homepage": "https://github.com/kei711/renovate-config#readme"
 }

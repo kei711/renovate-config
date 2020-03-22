@@ -1,0 +1,5 @@
+{
+  "extends": ["config:base", ":timezone(Asia/Tokyo)", ":label(renovate)"],
+  "schedule": ["before 7am on Saturday"],
+  "reviewers": ["kei711"]
+}
